@@ -44,6 +44,16 @@ public class ClientService
     }
 
     @Transactional
+    public ClientDTO update( Long id, ClientDTO dto )
+    {
+        Client client = repository.getReferenceById( id );
+
+        copyDtoToEntity( dto, client );
+
+        return getDtoFromEntity( client );
+    }
+
+    @Transactional
     public void delete( Long id )
     {
         repository.deleteById( id );
